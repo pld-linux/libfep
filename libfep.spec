@@ -6,17 +6,19 @@
 Summary:	Library to implement FEP (front end processor) on ANSI terminals
 Summary(pl.UTF-8):	Biblioteka do implementacji FEP (procesorów frontendowych) na terminalach ANSI
 Name:		libfep
-Version:	0.0.8
-Release:	2
+Version:	0.0.9
+Release:	1
 License:	GPL v3+
 Group:		Libraries
 #Source0Download: https://github.com/ueno/libfep/downloads
 Source0:	https://github.com/downloads/ueno/libfep/%{name}-%{version}.tar.gz
-# Source0-md5:	a360b049822506c53e9243d9e0a3f879
-Patch0:		%{name}-gets.patch
+# Source0-md5:	ab0dbc87b619e02e0f52a5818ff030ad
 URL:		https://github.com/ueno/libfep/
+BuildRequires:	autoconf >= 2.63
+BuildRequires:	automake >= 1:1.11
 BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	gobject-introspection-devel >= 0.9.0
+BuildRequires:	libtool >= 2:2
 BuildRequires:	pkgconfig
 BuildRequires:	pkgconfig(ncurses)
 BuildRequires:	gtk-doc >= 1.14
@@ -92,9 +94,19 @@ Dokumentacja API biblioteki libfep.
 
 %prep
 %setup -q
-%patch0 -p1
+
+# force rebuild
+%{__rm} docs/libfep/*.txt docs/libfep-glib/*.txt
 
 %build
+# must rebuild libtool because included one uses Debian's link_all_deplibs=no
+# patch, which cases g-ir-scanner to fail on libfep-glib when older libfep is
+# installed on build host
+%{__libtoolize}
+%{__aclocal} -I m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	%{?with_apidocs:--enable-gtk-doc} \
 	%{?with_static_libs:--enable-static} \
