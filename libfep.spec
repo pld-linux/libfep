@@ -7,7 +7,7 @@ Summary:	Library to implement FEP (front end processor) on ANSI terminals
 Summary(pl.UTF-8):	Biblioteka do implementacji FEP (procesorów frontendowych) na terminalach ANSI
 Name:		libfep
 Version:	0.0.9
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		Libraries
 #Source0Download: https://github.com/ueno/libfep/downloads
