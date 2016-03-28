@@ -2,12 +2,12 @@
 # Conditional build:
 %bcond_without	apidocs		# do not build and package API docs
 %bcond_without	static_libs	# don't build static libraries
-#
+
 Summary:	Library to implement FEP (front end processor) on ANSI terminals
 Summary(pl.UTF-8):	Biblioteka do implementacji FEP (procesorów frontendowych) na terminalach ANSI
 Name:		libfep
 Version:	0.0.9
-Release:	2
+Release:	3
 License:	GPL v3+
 Group:		Libraries
 #Source0Download: https://github.com/ueno/libfep/downloads
@@ -18,11 +18,10 @@ BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	gobject-introspection-devel >= 0.9.0
-BuildRequires:	libtool >= 2:2
-BuildRequires:	pkgconfig
-BuildRequires:	pkgconfig(ncurses)
 BuildRequires:	gtk-doc >= 1.14
+BuildRequires:	libtool >= 2:2
 BuildRequires:	ncurses-devel
+BuildRequires:	pkgconfig
 # not needed for releases
 #BuildRequires:	vala
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -74,6 +73,9 @@ Summary(pl.UTF-8):	API języka Vala do biblioteki libfep
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description -n vala-libfep
 Vala API for libfep library.
