@@ -73,9 +73,7 @@ Summary(pl.UTF-8):	API języka Vala do biblioteki libfep
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description -n vala-libfep
 Vala API for libfep library.
@@ -87,9 +85,7 @@ API języka Vala do biblioteki libfep.
 Summary:	libfep API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki libfep
 Group:		Documentation
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 API and internal documentation for libfep library.
