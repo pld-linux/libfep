@@ -23,6 +23,7 @@ BuildRequires:	gtk-doc >= 1.14
 BuildRequires:	libtool >= 2:2
 BuildRequires:	ncurses-devel
 BuildRequires:	pkgconfig
+BuildRequires:	rpm-build >= 4.6
 # not needed for releases
 #BuildRequires:	vala
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
