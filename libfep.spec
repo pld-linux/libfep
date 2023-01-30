@@ -1,18 +1,19 @@
 #
 # Conditional build:
-%bcond_without	apidocs		# do not build and package API docs
-%bcond_without	static_libs	# don't build static libraries
+%bcond_without	apidocs		# gtk-doc based API documentation
+%bcond_without	static_libs	# static libraries
 
 Summary:	Library to implement FEP (front end processor) on ANSI terminals
 Summary(pl.UTF-8):	Biblioteka do implementacji FEP (procesorów frontendowych) na terminalach ANSI
 Name:		libfep
-Version:	0.0.9
-Release:	4
+Version:	0.1.0
+Release:	1
 License:	GPL v3+
 Group:		Libraries
-#Source0Download: https://github.com/ueno/libfep/downloads
-Source0:	https://github.com/downloads/ueno/libfep/%{name}-%{version}.tar.gz
-# Source0-md5:	ab0dbc87b619e02e0f52a5818ff030ad
+#Source0Download: https://github.com/ueno/libfep/releases
+Source0:	https://github.com/ueno/libfep/releases/download/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	261c6d47a18acc8aecf55cda2a5275bc
+Patch0:		%{name}-docs.patch
 URL:		https://github.com/ueno/libfep/
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
@@ -95,14 +96,12 @@ Dokumentacja API biblioteki libfep.
 
 %prep
 %setup -q
+%patch0 -p1
 
 # force rebuild
 %{__rm} docs/libfep/*.txt docs/libfep-glib/*.txt
 
 %build
-# must rebuild libtool because included one uses Debian's link_all_deplibs=no
-# patch, which cases g-ir-scanner to fail on libfep-glib when older libfep is
-# installed on build host
 %{__libtoolize}
 %{__aclocal} -I m4
 %{__autoconf}

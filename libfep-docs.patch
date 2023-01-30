@@ -1,0 +1,13 @@
+--- libfep-0.1.0/docs/libfep/libfep-docs.sgml.orig	2012-03-29 03:17:21.000000000 +0200
++++ libfep-0.1.0/docs/libfep/libfep-docs.sgml	2023-01-30 20:41:55.502692258 +0100
+@@ -22,10 +22,6 @@
+     <xi:include href="xml/logger.xml"/>
+ 
+   </chapter>
+-  <chapter id="object-tree">
+-    <title>Object Hierarchy</title>
+-     <xi:include href="xml/tree_index.sgml"/>
+-  </chapter>
+   <index id="api-index-full">
+     <title>API Index</title>
+     <xi:include href="xml/api-index-full.xml"><xi:fallback /></xi:include>
