@@ -97,7 +97,7 @@ Dokumentacja API biblioteki libfep.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 # force rebuild
 %{__rm} docs/libfep/*.txt docs/libfep-glib/*.txt
